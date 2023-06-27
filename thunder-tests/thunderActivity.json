@@ -1,0 +1,90 @@
+[
+  {
+    "_id": "84f34208-7e13-42c4-b477-8da899d97b15",
+    "colId": "history",
+    "containerId": "",
+    "name": "https://localhost:7235/WeatherForecast",
+    "url": "https://localhost:7063/WeatherForecast",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2023-05-30T21:08:49.011Z",
+    "modified": "2023-06-26T17:46:04.361Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "91c18e83-78f5-4690-87f6-b64079988424",
+    "colId": "history",
+    "containerId": "",
+    "name": "https://localhost:7235/User/Authenticate",
+    "url": "https://localhost:7063/auth/login",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2023-05-30T21:22:40.511Z",
+    "modified": "2023-06-26T17:51:38.901Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"email\": \"eokur123@eokur.com\",\n    \"password\": \"eokureokur\"\n}\n",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "ba04b3f6-6280-48e7-9a6c-c749a052b09a",
+    "colId": "history",
+    "containerId": "",
+    "name": "https://localhost:7235/User/whoami",
+    "url": "https://localhost:7063/auth/getuserdata",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2023-06-10T12:52:20.673Z",
+    "modified": "2023-06-26T17:48:00.813Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MWU5YjIzZjVhMzcxMGVhNTE2ZmExMCIsInVzZXJuYW1lIjoiZW9rdXIiLCJuYmYiOjE2ODY0MTIzMTIsImV4cCI6MTY4NzAxNzExMiwiaWF0IjoxNjg2NDEyMzEyfQ.LfadDCqt6QQLQEesZQFbMnqdDUL5Jk-plliCQHFNhLs"
+    },
+    "tests": []
+  },
+  {
+    "_id": "2504efea-3f9d-44f5-b217-8e0265b5a0c1",
+    "colId": "history",
+    "containerId": "",
+    "name": "https://localhost:7235/user",
+    "url": "https://localhost:7063/auth",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2023-06-10T13:00:38.202Z",
+    "modified": "2023-06-26T17:50:52.424Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MWU5YjIzZjVhMzcxMGVhNTE2ZmExMCIsIm5iZiI6MTY4NjQwMjAxNCwiZXhwIjoxNjg3MDA2ODE0LCJpYXQiOjE2ODY0MDIwMTR9.vvM4mO-NeBm6EeNJcCfAzNCMyg9F6MOthAhrbgpPxQQ"
+    },
+    "tests": []
+  },
+  {
+    "_id": "daf85e33-cd38-4da2-88fb-cc76b6ee9ed0",
+    "colId": "history",
+    "containerId": "",
+    "name": "https://localhost:7235/User/register",
+    "url": "https://localhost:7063/auth/register",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2023-06-10T16:41:23.350Z",
+    "modified": "2023-06-26T17:51:21.096Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"email\": \"eokur123@eokur.com\",\n    \"password\": \"eokureokur\",\n    \"username\": \"eokur\",\n    \"role\": \"admin\"\n}\n",
+      "form": []
+    },
+    "tests": []
+  }
+]
