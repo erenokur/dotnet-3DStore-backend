@@ -29,7 +29,7 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("login")]
-    public IActionResult login(AuthenticateRequest model)
+    public IActionResult Login(AuthenticateRequest model)
     {
         var response = _userService.Authenticate(model);
 
@@ -43,7 +43,6 @@ public class AuthController : ControllerBase
     public IActionResult Register(RegisterRequest model)
     {
         var response = _userService.Register(model);
-
         if (response == false)
             return BadRequest(new { message = "Register Failed" });
 
@@ -60,7 +59,7 @@ public class AuthController : ControllerBase
 
     [Authorize]
     [HttpGet("getUserData")]
-    public IActionResult getUserData()
+    public IActionResult GetUserData()
     {
         var userId = HttpContext.User.FindFirst("id")?.Value;
         var userName = HttpContext.User.FindFirst("username")?.Value;

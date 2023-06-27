@@ -20,6 +20,10 @@ public class Products
 
     [Required]
     [MaxLength(255)]
+    public string Category { get; set; } = String.Empty;
+
+    [Required]
+    [MaxLength(255)]
     public string Image { get; set; } = String.Empty;
 
     [Required]
