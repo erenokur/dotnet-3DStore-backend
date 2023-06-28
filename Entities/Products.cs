@@ -3,6 +3,7 @@ namespace dotnet_3D_store_backend.Entities;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using dotnet_3D_store_backend.Enumerators;
 
 public class Products
 {
@@ -37,5 +38,8 @@ public class Products
 
     [Required]
     public int SellerUserId { get; set; }
+
+    [Required]
+    public ProductStatus ProductStatus { get; set; } = ProductStatus.Available;
 
 }

@@ -13,6 +13,13 @@ public class DatabaseContext : DbContext
         OrderItems = Set<OrderItems>();
     }
 
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Products>()
+            .Property(p => p.ProductStatus)
+            .HasConversion<string>();
+    }
+
     public DbSet<Users> Users { get; set; }
 
     public DbSet<Products> Products { get; set; }
@@ -21,6 +28,10 @@ public class DatabaseContext : DbContext
 
     public DbSet<OrderItems> OrderItems { get; set; }
 
-    //public DbSet<Tasks> Tasks { get; set; }
+    // public DbSet<CartItems> CartItems { get; set; }
+
+    // public DbSet<Cart> Cart { get; set; }
+
+    // public DbSet<Reviews> Reviews { get; set; }
 
 }

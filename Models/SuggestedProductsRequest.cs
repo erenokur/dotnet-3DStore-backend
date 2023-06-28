@@ -4,10 +4,9 @@ using System.ComponentModel.DataAnnotations;
 
 public class SuggestedProductsRequest
 {
-    [Required]
-    public int category { get; set; }
+    public int UserId { get; set; }
 
     [Required]
-    public int currentPage { get; set; }
+    public int CurrentPage { get; set; }
 
 }

@@ -22,23 +22,16 @@ public class ProductController : ControllerBase
 
     public ProductController(ILogger<ProductController> logger, IOptions<AppSettings> appSettings, DatabaseContext dbContext)
     {
-        _productService = new ProductService(dbContext);
-        _logger = logger;
         _appSettings = appSettings.Value;
+        _productService = new ProductService(dbContext, _appSettings);
+        _logger = logger;
+
     }
 
-    [Authorize]
     [HttpGet("getSuggestedProducts")]
-    public IActionResult GetSuggestedProducts()
+    public IActionResult GetSuggestedProducts(SuggestedProductsRequest model)
     {
-        var userIdString = HttpContext.User.FindFirst("id")?.Value;
-        if (userIdString == null)
-        {
-            return BadRequest("User ID not found.");
-        }
-        var userId = int.Parse(userIdString);
-        var products = _productService.GetSuggestedProducts(userId);
+        var products = _productService.GetSuggestedProducts(model);
         return Ok(products);
     }
-
 }
