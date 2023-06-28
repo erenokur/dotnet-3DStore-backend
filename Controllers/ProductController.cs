@@ -34,4 +34,16 @@ public class ProductController : ControllerBase
         var products = _productService.GetSuggestedProducts(model);
         return Ok(products);
     }
+    [Authorize]
+    [HttpPost("addProduct")]
+    public IActionResult AddProduct(AddProductRequest model)
+    {
+        var userId = Convert.ToInt32(HttpContext.User.FindFirst("id")?.Value);
+        var result = _productService.AddProduct(model, userId);
+        if (result)
+        {
+            return Ok();
+        }
+        return BadRequest();
+    }
 }

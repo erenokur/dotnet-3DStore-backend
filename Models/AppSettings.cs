@@ -6,5 +6,6 @@ public class AppSettings
     public string ConnectionString { get; set; } = String.Empty;
     public string DatabaseName { get; set; } = String.Empty;
     public int PageSize { get; set; }
+    public string ImageServerLocalPath { get; set; } = String.Empty;
 
 }

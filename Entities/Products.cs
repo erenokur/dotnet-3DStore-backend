@@ -28,7 +28,10 @@ public class Products
     public string Image { get; set; } = String.Empty;
 
     [Required]
-    public int Price { get; set; }
+    public string Currency { get; set; } = "TRY";
+
+    [Required]
+    public decimal Price { get; set; }
 
     [Required]
     public int Quantity { get; set; }
