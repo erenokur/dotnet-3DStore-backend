@@ -39,9 +39,9 @@ public class ProductService
         _dbContext.SaveChanges();
         return true;
     }
-    public bool DeleteProduct(int id)
+    public bool DeleteProduct(RemoveProductRequest model)
     {
-        var product = _dbContext.Products.Find(id);
+        var product = _dbContext.Products.Find(model.ProductId);
         if (product == null)
         {
             return false;
@@ -75,10 +75,10 @@ public class ProductService
         return suggestedProducts.Any() ? suggestedProducts : _dbContext.Products.Skip(calculateIndex).Take(_appSettings.PageSize);
     }
 
-    public IEnumerable<Products> GetProductsByCategory(string category, int currentPage)
+    public IEnumerable<Products> GetProductsByCategory(ProductsByCategoryRequest model)
     {
-        int calculateIndex = currentPage * _appSettings.PageSize;
-        return _dbContext.Products.Where(p => p.Category == category).Skip(calculateIndex).Take(_appSettings.PageSize);
+        int calculateIndex = model.CurrentPage * _appSettings.PageSize;
+        return _dbContext.Products.Where(p => p.Category == model.Category).Skip(calculateIndex).Take(_appSettings.PageSize);
     }
     public IEnumerable<Products> GetProductsBySearch(string search, int currentPage)
     {

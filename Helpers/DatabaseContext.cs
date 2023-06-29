@@ -18,6 +18,9 @@ public class DatabaseContext : DbContext
         modelBuilder.Entity<Products>()
             .Property(p => p.ProductStatus)
             .HasConversion<string>();
+        modelBuilder.Entity<Users>()
+            .Property(p => p.Role)
+            .HasConversion<string>();
     }
 
     public DbSet<Users> Users { get; set; }

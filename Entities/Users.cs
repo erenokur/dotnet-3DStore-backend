@@ -3,6 +3,7 @@ namespace dotnet_3D_store_backend.Entities;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using dotnet_3D_store_backend.Enumerators;
 
 public class Users
 {
@@ -26,5 +27,5 @@ public class Users
     public DateTime Created { get; set; }
 
     [Required]
-    public string Role { get; set; } = String.Empty;
+    public UserRoles Role { get; set; } = UserRoles.Guest;
 }

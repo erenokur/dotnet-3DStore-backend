@@ -9,7 +9,7 @@ using dotnet_3D_store_backend.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
-
+using dotnet_3D_store_backend.Enumerators;
 
 [ApiController]
 [Route("[controller]")]
@@ -28,12 +28,6 @@ public class ProductController : ControllerBase
 
     }
 
-    [HttpGet("getSuggestedProducts")]
-    public IActionResult GetSuggestedProducts(SuggestedProductsRequest model)
-    {
-        var products = _productService.GetSuggestedProducts(model);
-        return Ok(products);
-    }
     [Authorize]
     [HttpPost("addProduct")]
     public IActionResult AddProduct(AddProductRequest model)
@@ -45,5 +39,24 @@ public class ProductController : ControllerBase
             return Ok();
         }
         return BadRequest();
+    }
+
+    [Authorize(Roles = "User")]
+    [HttpPost("removeProduct")]
+    public IActionResult RemoveProduct(RemoveProductRequest model)
+    {
+        var result = _productService.DeleteProduct(model);
+        if (result)
+        {
+            return Ok();
+        }
+        return BadRequest();
+    }
+
+    [HttpGet("getSuggestedProducts")]
+    public IActionResult GetSuggestedProducts(SuggestedProductsRequest model)
+    {
+        var products = _productService.GetSuggestedProducts(model);
+        return Ok(products);
     }
 }
