@@ -8,10 +8,16 @@ using dotnet_3D_store_backend.Models;
 using dotnet_3D_store_backend.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
+var appSettings = builder.Configuration.GetSection("AppSettings").Get<AppSettings>();
+builder.Services.AddSingleton<AppSettings>();
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("MyPolicy",
+    options.AddPolicy(appSettings.ApiCorsPolicy,
     builder =>
     {
         builder.AllowAnyOrigin()
@@ -19,13 +25,6 @@ builder.Services.AddCors(options =>
                .AllowAnyMethod();
     });
 });
-
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
-builder.Services.AddSingleton<AppSettings>();
-var appSettings = builder.Configuration.GetSection("AppSettings").Get<AppSettings>();
 builder.Services.AddAuthentication("Bearer")
     .AddJwtBearer("Bearer", options =>
     {
@@ -46,6 +45,13 @@ builder.Services.AddAuthentication("Bearer")
 builder.Services.AddDbContext<DatabaseContext>(options =>
     options.UseMySQL(appSettings.ConnectionString));
 
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminPolicy", policy => policy.RequireRole("Admin"));
+    options.AddPolicy("UserPolicy", policy => policy.RequireRole("User"));
+    options.AddPolicy("SellerPolicy", policy => policy.RequireRole("Seller"));
+});
+
 var app = builder.Build();
 
 app.UseHttpsRedirection();
@@ -58,7 +64,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseRouting();
 
-app.UseCors("MyPolicy");
+app.UseCors(appSettings.ApiCorsPolicy);
 
 app.UseAuthentication();
 

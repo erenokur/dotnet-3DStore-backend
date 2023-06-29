@@ -24,7 +24,7 @@ public class UserService
         if (!result) return null;
 
         // authentication successful so generate jwt token
-        var tokenJson = _jwtHelper.generateJwtToken(user);
+        var tokenJson = _jwtHelper.GenerateJwtToken(user);
 
         // serialize user and token to JSON strings
         string userJson = System.Text.Json.JsonSerializer.Serialize(user);

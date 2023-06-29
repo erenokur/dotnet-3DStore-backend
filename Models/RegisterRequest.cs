@@ -1,6 +1,7 @@
 namespace dotnet_3D_store_backend.Models;
 
 using System.ComponentModel.DataAnnotations;
+using dotnet_3D_store_backend.Enumerators;
 
 public class RegisterRequest
 {
@@ -13,5 +14,5 @@ public class RegisterRequest
     [Required]
     public string UserName { get; set; } = String.Empty;
     [Required]
-    public string Role { get; set; } = String.Empty;
+    public UserRoles Role { get; set; } = UserRoles.Guest;
 }

@@ -17,15 +17,16 @@ public class JwtHelper
         _appSettings = appSettings.Value;
     }
 
-    public string generateJwtToken(Users user)
+    public string GenerateJwtToken(Users user)
     {
         var tokenHandler = new JwtSecurityTokenHandler();
         var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
+        var roleClaim = new Claim(ClaimTypes.Role, user.Role.ToString());
         var claims = new List<Claim>
             {
                 new Claim("id", user.Id.ToString()),
                 new Claim("username", user.UserName),
-                // Add more claims as needed
+                roleClaim
             };
         var tokenDescriptor = new SecurityTokenDescriptor
         {

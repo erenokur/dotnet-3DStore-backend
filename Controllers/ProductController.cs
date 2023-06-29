@@ -41,7 +41,7 @@ public class ProductController : ControllerBase
         return BadRequest();
     }
 
-    [Authorize(Roles = "User")]
+    [Authorize(Policy = "SellerPolicy")]
     [HttpPost("removeProduct")]
     public IActionResult RemoveProduct(RemoveProductRequest model)
     {

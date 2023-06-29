@@ -8,4 +8,6 @@ public class AppSettings
     public int PageSize { get; set; }
     public string ImageServerLocalPath { get; set; } = String.Empty;
 
+    public string ApiCorsPolicy { get; set; } = String.Empty;
+
 }
