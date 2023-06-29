@@ -1,4 +1,4 @@
-namespace dotnet_3D_store_backend.Helpers;
+namespace dotnet_3D_store_backend.Contexts;
 
 using Microsoft.EntityFrameworkCore;
 using dotnet_3D_store_backend.Entities;

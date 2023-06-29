@@ -3,18 +3,16 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
 using dotnet_3D_store_backend.Models;
-using dotnet_3D_store_backend.Helpers;
+using dotnet_3D_store_backend.Contexts;
 using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
 var appSettings = builder.Configuration.GetSection("AppSettings").Get<AppSettings>();
 builder.Services.AddSingleton<AppSettings>();
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 
 builder.Services.AddCors(options =>
 {
@@ -26,6 +24,11 @@ builder.Services.AddCors(options =>
                .AllowAnyMethod();
     });
 });
+
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
 builder.Services.AddAuthentication("Bearer")
     .AddJwtBearer("Bearer", options =>
     {
@@ -59,6 +62,8 @@ builder.Services.AddAuthorization(options =>
   });
 });
 
+builder.Services.AddSignalR();
+
 var app = builder.Build();
 
 app.UseHttpsRedirection();
@@ -80,6 +85,7 @@ app.UseAuthorization();
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllers();
+    endpoints.MapHub<NotificationContext>(appSettings.NotificationSocket);
 });
 
 app.Run();

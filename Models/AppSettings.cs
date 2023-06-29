@@ -14,4 +14,6 @@ public class AppSettings
 
     public string BearerValidAudience { get; set; } = String.Empty;
 
+    public string NotificationSocket { get; set; } = String.Empty;
+
 }
