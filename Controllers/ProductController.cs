@@ -61,7 +61,7 @@ public class ProductController : ControllerBase
     [HttpGet("getSuggestedProducts")]
     public IActionResult GetSuggestedProducts(SuggestedProductsRequest model)
     {
-        var products = _productService.GetSuggestedProducts(model);
+        var products = _productService.GetSuggestedProductsAsync(model);
         return Ok(products);
     }
 
@@ -75,7 +75,7 @@ public class ProductController : ControllerBase
     [HttpGet("GetProductsBySearch")]
     public IActionResult GetProductsBySearch(ProductsBySearchRequest model)
     {
-        var products = _productService.GetProductsBySearch(model);
+        var products = _productService.GetProductsBySearchAsync(model);
         return Ok(products);
     }
 }

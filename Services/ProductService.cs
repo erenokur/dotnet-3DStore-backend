@@ -84,7 +84,7 @@ public class ProductService
         int calculateIndex = model.CurrentPage * _appSettings.PageSize;
         return _dbContext.Products.Where(p => p.Category == model.Category).Skip(calculateIndex).Take(_appSettings.PageSize);
     }
-    public async Task<IEnumerable<Products>> GetProductsBySearch(ProductsBySearchRequest model)
+    public async Task<IEnumerable<Products>> GetProductsBySearchAsync(ProductsBySearchRequest model)
     {
         int calculateIndex = model.CurrentPage * _appSettings.PageSize;
         var products = await _dbContext.Products
