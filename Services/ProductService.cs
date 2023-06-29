@@ -15,7 +15,7 @@ public class ProductService
         _dbContext = dbContext;
         _appSettings = appSettings;
     }
-    public bool AddProduct(AddProductRequest model, int userId)
+    public bool AddProduct(AddProductRequest model)
     {
         var imagePath = Path.Combine(_appSettings.ImageServerLocalPath, model.Image.FileName);
         using (var stream = new FileStream(imagePath, FileMode.Create))
@@ -32,7 +32,7 @@ public class ProductService
             Price = model.Price,
             Quantity = model.Quantity,
             Created = DateTime.UtcNow,
-            SellerUserId = userId,
+            SellerUserId = model.SellerUserId,
             ProductStatus = ProductStatus.Available
         };
         _dbContext.Products.Add(product);
@@ -80,9 +80,9 @@ public class ProductService
         int calculateIndex = model.CurrentPage * _appSettings.PageSize;
         return _dbContext.Products.Where(p => p.Category == model.Category).Skip(calculateIndex).Take(_appSettings.PageSize);
     }
-    public IEnumerable<Products> GetProductsBySearch(string search, int currentPage)
+    public IEnumerable<Products> GetProductsBySearch(ProductsBySearchRequest model)
     {
-        int calculateIndex = currentPage * _appSettings.PageSize;
-        return _dbContext.Products.Where(p => p.Name.Contains(search)).Skip(calculateIndex).Take(_appSettings.PageSize);
+        int calculateIndex = model.CurrentPage * _appSettings.PageSize;
+        return _dbContext.Products.Where(p => p.Name.Contains(model.Search)).Skip(calculateIndex).Take(_appSettings.PageSize);
     }
 }

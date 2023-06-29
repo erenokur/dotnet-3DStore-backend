@@ -23,4 +23,6 @@ public class AddProductRequest
     [Required]
     public int Quantity { get; set; }
 
+    public int SellerUserId { get; set; }
+
 }

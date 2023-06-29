@@ -49,7 +49,7 @@ public class AuthController : ControllerBase
         return Ok(new { message = "User registered successfully!" });
     }
 
-    [Authorize]
+    [Authorize(Policy = "AdminPolicy")]
     [HttpGet]
     public IActionResult GetAll()
     {

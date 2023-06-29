@@ -33,7 +33,12 @@ public class ProductController : ControllerBase
     public IActionResult AddProduct(AddProductRequest model)
     {
         var userId = Convert.ToInt32(HttpContext.User.FindFirst("id")?.Value);
-        var result = _productService.AddProduct(model, userId);
+        if (userId == 0)
+        {
+            return BadRequest();
+        }
+        model.SellerUserId = userId;
+        var result = _productService.AddProduct(model);
         if (result)
         {
             return Ok();
@@ -57,6 +62,20 @@ public class ProductController : ControllerBase
     public IActionResult GetSuggestedProducts(SuggestedProductsRequest model)
     {
         var products = _productService.GetSuggestedProducts(model);
+        return Ok(products);
+    }
+
+    [HttpGet("GetProductsByCategory")]
+    public IActionResult GetProductsByCategory(ProductsByCategoryRequest model)
+    {
+        var products = _productService.GetProductsByCategory(model);
+        return Ok(products);
+    }
+
+    [HttpGet("GetProductsBySearch")]
+    public IActionResult GetProductsBySearch(ProductsBySearchRequest model)
+    {
+        var products = _productService.GetProductsBySearch(model);
         return Ok(products);
     }
 }
