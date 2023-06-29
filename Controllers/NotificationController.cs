@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/notification")]
 
 public class NotificationController : ControllerBase
 {
@@ -29,4 +29,11 @@ public class NotificationController : ControllerBase
         return Ok();
     }
 
+    [Authorize(Policy = "AdminPolicy")]
+    [HttpPost("sendNotificationToUser")]
+    public IActionResult sendNotificationToUser(SendNotificationRequest model)
+    {
+        _notificationContext.Clients.User(model.Recipient).SendAsync("ReceiveNotification", model.Message);
+        return Ok();
+    }
 }
