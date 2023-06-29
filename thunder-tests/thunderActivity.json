@@ -22,12 +22,12 @@
     "method": "POST",
     "sortNum": 0,
     "created": "2023-05-30T21:22:40.511Z",
-    "modified": "2023-06-26T17:51:38.901Z",
+    "modified": "2023-06-29T17:57:29.543Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"email\": \"eokur123@eokur.com\",\n    \"password\": \"eokureokur\"\n}\n",
+      "raw": "{\n    \"email\": \"eokursale@eokur.com\",\n    \"password\": \"eokureokur\"\n}\n",
       "form": []
     },
     "tests": []
@@ -41,12 +41,12 @@
     "method": "GET",
     "sortNum": 0,
     "created": "2023-06-10T12:52:20.673Z",
-    "modified": "2023-06-26T17:48:00.813Z",
+    "modified": "2023-06-29T15:14:06.971Z",
     "headers": [],
     "params": [],
     "auth": {
       "type": "bearer",
-      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MWU5YjIzZjVhMzcxMGVhNTE2ZmExMCIsInVzZXJuYW1lIjoiZW9rdXIiLCJuYmYiOjE2ODY0MTIzMTIsImV4cCI6MTY4NzAxNzExMiwiaWF0IjoxNjg2NDEyMzEyfQ.LfadDCqt6QQLQEesZQFbMnqdDUL5Jk-plliCQHFNhLs"
+      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJ1c2VybmFtZSI6ImVva3VyIiwicm9sZSI6IkFkbWluIiwibmJmIjoxNjg4MDUxNjAzLCJleHAiOjE2ODg2NTY0MDMsImlhdCI6MTY4ODA1MTYwM30.7j2e7FwEijkealblxQu3bX9XPdnHlwGMfLgJq8Fg0aY"
     },
     "tests": []
   },
@@ -59,12 +59,12 @@
     "method": "GET",
     "sortNum": 0,
     "created": "2023-06-10T13:00:38.202Z",
-    "modified": "2023-06-26T17:50:52.424Z",
+    "modified": "2023-06-29T17:56:18.437Z",
     "headers": [],
     "params": [],
     "auth": {
       "type": "bearer",
-      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MWU5YjIzZjVhMzcxMGVhNTE2ZmExMCIsIm5iZiI6MTY4NjQwMjAxNCwiZXhwIjoxNjg3MDA2ODE0LCJpYXQiOjE2ODY0MDIwMTR9.vvM4mO-NeBm6EeNJcCfAzNCMyg9F6MOthAhrbgpPxQQ"
+      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIiLCJ1c2VybmFtZSI6ImVva3Vyc2FsZSIsInJvbGUiOiJTZWxsZXIiLCJuYmYiOjE2ODgwNjExMzgsImV4cCI6MTY4ODY2NTkzOCwiaWF0IjoxNjg4MDYxMTM4fQ.E9-9W5aNiTSuThlUS_NcuviVcFIOoXuHMbfckVqBIgo"
     },
     "tests": []
   },
@@ -77,13 +77,120 @@
     "method": "POST",
     "sortNum": 0,
     "created": "2023-06-10T16:41:23.350Z",
-    "modified": "2023-06-26T17:51:21.096Z",
+    "modified": "2023-06-29T15:14:27.697Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"email\": \"eokur123@eokur.com\",\n    \"password\": \"eokureokur\",\n    \"username\": \"eokur\",\n    \"role\": \"admin\"\n}\n",
+      "raw": "{\n    \"email\": \"eokur123@eokur.com\",\n    \"password\": \"eokureokur\",\n    \"username\": \"eokur\",\n    \"role\": 2\n}\n",
       "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "3861bda7-54b8-43c1-aca8-84293adc1c3e",
+    "colId": "history",
+    "containerId": "",
+    "name": "https://localhost:7063/auth/register",
+    "url": "https://localhost:7063/auth/register",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2023-06-29T17:46:21.606Z",
+    "modified": "2023-06-29T17:46:21.606Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"email\": \"eokursale@eokur.com\",\n    \"password\": \"eokureokur\",\n    \"username\": \"eokursale\",\n    \"role\": 2\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "d2c5f514-2b4c-433a-9b45-fef6e323f808",
+    "colId": "history",
+    "containerId": "",
+    "name": "https://localhost:7063/auth/register",
+    "url": "https://localhost:7063/auth/register",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2023-06-29T17:46:37.733Z",
+    "modified": "2023-06-29T17:46:37.733Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"email\": \"eokursale@eokur.com\",\n    \"password\": \"eokureokur\",\n    \"username\": \"eokursale\",\n    \"role\": 2\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "78f6f278-4bee-4c00-85a3-cf5d50e63169",
+    "colId": "history",
+    "containerId": "",
+    "name": "https://localhost:7063/auth/changeUserRole",
+    "url": "https://localhost:7063/auth/changeUserRole",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2023-06-29T17:49:39.346Z",
+    "modified": "2023-06-29T17:49:39.346Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"UserId\" : 2,\n  \"Role\" : 1\n}",
+      "form": []
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJ1c2VybmFtZSI6ImVva3VyIiwicm9sZSI6IkFkbWluIiwibmJmIjoxNjg4MDUxNjAzLCJleHAiOjE2ODg2NTY0MDMsImlhdCI6MTY4ODA1MTYwM30.7j2e7FwEijkealblxQu3bX9XPdnHlwGMfLgJq8Fg0aY"
+    },
+    "tests": []
+  },
+  {
+    "_id": "19a19317-51e9-44f5-af22-68b451847601",
+    "colId": "history",
+    "containerId": "",
+    "name": "https://localhost:7063/auth/changeUserRole",
+    "url": "https://localhost:7063/auth/changeUserRole",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2023-06-29T17:49:52.583Z",
+    "modified": "2023-06-29T18:08:44.353Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"UserId\" : 2,\n  \"Role\" : 1\n}",
+      "form": []
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJ1c2VybmFtZSI6ImVva3VyIiwicm9sZSI6IkFkbWluIiwibmJmIjoxNjg4MDYxMDc0LCJleHAiOjE2ODg2NjU4NzQsImlhdCI6MTY4ODA2MTA3NH0.OjnnwA3Qa9eT8UUJm9pQDbFrdf63k5RI-IZ9U5BMIuI"
+    },
+    "tests": []
+  },
+  {
+    "_id": "587fe72b-dbe3-4317-8767-f5d7bc57c084",
+    "colId": "history",
+    "containerId": "",
+    "name": "https://localhost:7063/auth/UpdateUser",
+    "url": "https://localhost:7063/auth/UpdateUser",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2023-06-29T17:54:22.034Z",
+    "modified": "2023-06-29T18:08:27.170Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"UserName\" : \"eokursale1\"\n}",
+      "form": []
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIiLCJ1c2VybmFtZSI6ImVva3Vyc2FsZSIsInJvbGUiOiJTZWxsZXIiLCJuYmYiOjE2ODgwNjE0NDksImV4cCI6MTY4ODY2NjI0OSwiaWF0IjoxNjg4MDYxNDQ5fQ.6fpzyVlVmDeryXsGnDKOpboyDwl9uoBfM6QxHZXwWF8"
     },
     "tests": []
   }

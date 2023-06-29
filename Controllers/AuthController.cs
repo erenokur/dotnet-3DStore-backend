@@ -73,4 +73,30 @@ public class AuthController : ControllerBase
         }
 
     }
+
+    [Authorize(Policy = "AdminPolicy")]
+    [HttpPost("changeUserRole")]
+    public IActionResult changeUserRole(ChangeUserRoleRequest model)
+    {
+        var result = _userService.ChangeUserRoleRequest(model);
+        if (result)
+        {
+            return Ok();
+        }
+        return BadRequest();
+    }
+
+    [Authorize(Policy = "UserOrSellerPolicy")]
+    [HttpPost("updateUser")]
+    public IActionResult UpdateUser(UpdateUserRequest model)
+    {
+        var userId = HttpContext.User.FindFirst("id")?.Value;
+        model.UserId = Convert.ToInt32(userId);
+        var result = _userService.UpdateUser(model);
+        if (result)
+        {
+            return Ok();
+        }
+        return BadRequest();
+    }
 }

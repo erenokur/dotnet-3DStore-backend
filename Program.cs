@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 using dotnet_3D_store_backend.Models;
 using dotnet_3D_store_backend.Helpers;
+using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
@@ -50,6 +51,12 @@ builder.Services.AddAuthorization(options =>
     options.AddPolicy("AdminPolicy", policy => policy.RequireRole("Admin"));
     options.AddPolicy("UserPolicy", policy => policy.RequireRole("User"));
     options.AddPolicy("SellerPolicy", policy => policy.RequireRole("Seller"));
+    options.AddPolicy("UserOrSellerPolicy", policy =>
+  {
+      policy.RequireAssertion(context =>
+          context.User.HasClaim(ClaimTypes.Role, "User") ||
+          context.User.HasClaim(ClaimTypes.Role, "Seller"));
+  });
 });
 
 var app = builder.Build();

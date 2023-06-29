@@ -28,7 +28,7 @@ public class ProductController : ControllerBase
 
     }
 
-    [Authorize]
+    [Authorize(Policy = "SellerPolicy")]
     [HttpPost("addProduct")]
     public IActionResult AddProduct(AddProductRequest model)
     {

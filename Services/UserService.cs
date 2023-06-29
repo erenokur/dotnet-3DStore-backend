@@ -41,10 +41,8 @@ public class UserService
     {
         var user = _dbContext.Users.FirstOrDefault(x => x.Email == model.Email);
         if (user != null) return false;
-
         // hash password
         string hashedPassword = BCrypt.Net.BCrypt.HashPassword(model.Password);
-
         // create user
         Users newUser = new()
         {
@@ -58,7 +56,26 @@ public class UserService
         // insert user
         _dbContext.Users.Add(newUser);
         _dbContext.SaveChanges();
-        // return user without password
+        return true;
+    }
+    public bool UpdateUser(UpdateUserRequest model)
+    {
+        var user = _dbContext.Users.FirstOrDefault(x => x.Id == model.UserId);
+        if (user == null) return false;
+        if (!string.IsNullOrEmpty(model.Password))
+            user.Password = model.Password;
+        if (!string.IsNullOrEmpty(model.UserName))
+            user.UserName = model.UserName;
+        _dbContext.SaveChanges();
+        return true;
+    }
+
+    public bool ChangeUserRoleRequest(ChangeUserRoleRequest model)
+    {
+        var user = _dbContext.Users.FirstOrDefault(x => x.Id == model.UserId);
+        if (user == null) return false;
+        user.Role = model.Role;
+        _dbContext.SaveChanges();
         return true;
     }
 
