@@ -36,8 +36,8 @@ builder.Services.AddAuthentication("Bearer")
             ValidateAudience = false,
             ValidateLifetime = false,
             ValidateIssuerSigningKey = false,
-            ValidIssuer = "your_issuer",
-            ValidAudience = "your_audience",
+            ValidIssuer = appSettings.BearerValidIssuer,
+            ValidAudience = appSettings.BearerValidAudience,
             IssuerSigningKey = new SymmetricSecurityKey(secretKey)
         };
     });
