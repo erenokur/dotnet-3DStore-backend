@@ -17,33 +17,33 @@ public class ProductService
         _dbContext = dbContext;
         _appSettings = appSettings;
     }
-    public bool AddProduct(AddProductRequest model)
+    public bool AddProduct(AddProductRequest request)
     {
-        var imagePath = Path.Combine(_appSettings.ImageServerLocalPath, model.Image.FileName);
+        var imagePath = Path.Combine(_appSettings.ImageServerLocalPath, request.Image.FileName);
         using (var stream = new FileStream(imagePath, FileMode.Create))
         {
-            model.Image.CopyTo(stream);
+            request.Image.CopyTo(stream);
         }
         var product = new Products
         {
-            Name = model.Name,
-            Description = model.Description,
-            Category = model.Category,
+            Name = request.Name,
+            Description = request.Description,
+            Category = request.Category,
             Image = imagePath,
-            Currency = model.Currency,
-            Price = model.Price,
-            Quantity = model.Quantity,
+            Currency = request.Currency,
+            Price = request.Price,
+            Quantity = request.Quantity,
             Created = DateTime.UtcNow,
-            SellerUserId = model.SellerUserId,
+            SellerUserId = request.SellerUserId,
             ProductStatus = ProductStatus.Available
         };
         _dbContext.Products.Add(product);
         _dbContext.SaveChanges();
         return true;
     }
-    public bool DeleteProduct(RemoveProductRequest model)
+    public bool DeleteProduct(RemoveProductRequest request)
     {
-        var product = _dbContext.Products.Find(model.ProductId);
+        var product = _dbContext.Products.Find(request.ProductId);
         if (product == null)
         {
             return false;
@@ -58,11 +58,11 @@ public class ProductService
     }
 
     // I changed this method to async need to be tested after some orders are created
-    public async Task<IEnumerable<Products>> GetSuggestedProductsAsync(SuggestedProductsRequest model)
+    public async Task<IEnumerable<Products>> GetSuggestedProductsAsync(SuggestedProductsRequest request)
     {
-        int calculateIndex = model.CurrentPage * _appSettings.PageSize;
+        int calculateIndex = request.CurrentPage * _appSettings.PageSize;
         // Get all user orders
-        var userOrders = await _dbContext.Orders.Where(o => o.CostumerUserId == model.UserId).ToListAsync();
+        var userOrders = await _dbContext.Orders.Where(o => o.CostumerUserId == request.UserId).ToListAsync();
         // Get all user order items
         var userOrderItems = await _dbContext.OrderItems.Where(oi => userOrders.Any(o => o.Id == oi.OrderId)).ToListAsync();
         // Get all user products
@@ -80,16 +80,16 @@ public class ProductService
         return suggestedProducts.Any() ? suggestedProducts : await _dbContext.Products.Skip(calculateIndex).Take(_appSettings.PageSize).ToListAsync();
     }
 
-    public IEnumerable<Products> GetProductsByCategory(ProductsByCategoryRequest model)
+    public IEnumerable<Products> GetProductsByCategory(ProductsByCategoryRequest request)
     {
-        int calculateIndex = model.CurrentPage * _appSettings.PageSize;
-        return _dbContext.Products.Where(p => p.Category == model.Category).Skip(calculateIndex).Take(_appSettings.PageSize);
+        int calculateIndex = request.CurrentPage * _appSettings.PageSize;
+        return _dbContext.Products.Where(p => p.Category == request.Category).Skip(calculateIndex).Take(_appSettings.PageSize);
     }
-    public async Task<IEnumerable<Products>> GetProductsBySearchAsync(ProductsBySearchRequest model)
+    public async Task<IEnumerable<Products>> GetProductsBySearchAsync(ProductsBySearchRequest request)
     {
-        int calculateIndex = model.CurrentPage * _appSettings.PageSize;
+        int calculateIndex = request.CurrentPage * _appSettings.PageSize;
         var products = await _dbContext.Products
-            .Where(p => p.Name.Contains(model.Search))
+            .Where(p => p.Name.Contains(request.Search))
             .Skip(calculateIndex)
             .Take(_appSettings.PageSize)
             .ToListAsync();

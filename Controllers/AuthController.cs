@@ -30,9 +30,9 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("login")]
-    public IActionResult Login(AuthenticateRequest model)
+    public IActionResult Login(AuthenticateRequest request)
     {
-        var response = _userService.Authenticate(model);
+        var response = _userService.Authenticate(request);
 
         if (response == null)
             return BadRequest(new { message = "Username or password is incorrect" });
@@ -41,9 +41,9 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("register")]
-    public IActionResult Register(RegisterRequest model)
+    public IActionResult Register(RegisterRequest request)
     {
-        var response = _userService.Register(model);
+        var response = _userService.Register(request);
         if (response == false)
             return BadRequest(new { message = "Register Failed" });
 
@@ -77,9 +77,9 @@ public class AuthController : ControllerBase
 
     [Authorize(Policy = "AdminPolicy")]
     [HttpPost("changeUserRole")]
-    public IActionResult changeUserRole(ChangeUserRoleRequest model)
+    public IActionResult changeUserRole(ChangeUserRoleRequest request)
     {
-        var result = _userService.ChangeUserRoleRequest(model);
+        var result = _userService.ChangeUserRoleRequest(request);
         if (result)
         {
             return Ok();
@@ -89,11 +89,11 @@ public class AuthController : ControllerBase
 
     [Authorize(Policy = "UserOrSellerPolicy")]
     [HttpPost("updateUser")]
-    public IActionResult UpdateUser(UpdateUserRequest model)
+    public IActionResult UpdateUser(UpdateUserRequest request)
     {
         var userId = HttpContext.User.FindFirst("id")?.Value;
-        model.UserId = Convert.ToInt32(userId);
-        var result = _userService.UpdateUser(model);
+        request.UserId = Convert.ToInt32(userId);
+        var result = _userService.UpdateUser(request);
         if (result)
         {
             return Ok();

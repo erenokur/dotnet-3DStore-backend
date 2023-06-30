@@ -30,15 +30,15 @@ public class ProductController : ControllerBase
 
     [Authorize(Policy = "SellerPolicy")]
     [HttpPost("addProduct")]
-    public IActionResult AddProduct(AddProductRequest model)
+    public IActionResult AddProduct(AddProductRequest request)
     {
         var userId = Convert.ToInt32(HttpContext.User.FindFirst("id")?.Value);
         if (userId == 0)
         {
             return BadRequest();
         }
-        model.SellerUserId = userId;
-        var result = _productService.AddProduct(model);
+        request.SellerUserId = userId;
+        var result = _productService.AddProduct(request);
         if (result)
         {
             return Ok();
@@ -48,9 +48,9 @@ public class ProductController : ControllerBase
 
     [Authorize(Policy = "SellerPolicy")]
     [HttpPost("removeProduct")]
-    public IActionResult RemoveProduct(RemoveProductRequest model)
+    public IActionResult RemoveProduct(RemoveProductRequest request)
     {
-        var result = _productService.DeleteProduct(model);
+        var result = _productService.DeleteProduct(request);
         if (result)
         {
             return Ok();
@@ -59,23 +59,23 @@ public class ProductController : ControllerBase
     }
 
     [HttpGet("getSuggestedProducts")]
-    public IActionResult GetSuggestedProducts(SuggestedProductsRequest model)
+    public IActionResult GetSuggestedProducts(SuggestedProductsRequest request)
     {
-        var products = _productService.GetSuggestedProductsAsync(model);
+        var products = _productService.GetSuggestedProductsAsync(request);
         return Ok(products);
     }
 
     [HttpGet("GetProductsByCategory")]
-    public IActionResult GetProductsByCategory(ProductsByCategoryRequest model)
+    public IActionResult GetProductsByCategory(ProductsByCategoryRequest request)
     {
-        var products = _productService.GetProductsByCategory(model);
+        var products = _productService.GetProductsByCategory(request);
         return Ok(products);
     }
 
     [HttpGet("GetProductsBySearch")]
-    public IActionResult GetProductsBySearch(ProductsBySearchRequest model)
+    public IActionResult GetProductsBySearch(ProductsBySearchRequest request)
     {
-        var products = _productService.GetProductsBySearchAsync(model);
+        var products = _productService.GetProductsBySearchAsync(request);
         return Ok(products);
     }
 }

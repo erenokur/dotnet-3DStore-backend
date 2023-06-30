@@ -31,9 +31,9 @@ public class NotificationController : ControllerBase
 
     [Authorize(Policy = "AdminPolicy")]
     [HttpPost("sendNotificationToUser")]
-    public IActionResult sendNotificationToUser(SendNotificationRequest model)
+    public IActionResult sendNotificationToUser(SendNotificationRequest request)
     {
-        _notificationContext.Clients.User(model.Recipient).SendAsync("ReceiveNotification", model.Message);
+        _notificationContext.Clients.User(request.Recipient).SendAsync("ReceiveNotification", request.Message);
         return Ok();
     }
 }

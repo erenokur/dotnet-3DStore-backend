@@ -8,11 +8,17 @@ using Microsoft.AspNetCore.Http;
 using dotnet_3D_store_backend.Models;
 using dotnet_3D_store_backend.Contexts;
 using System.Security.Claims;
+using dotnet_3D_store_backend.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
 var appSettings = builder.Configuration.GetSection("AppSettings").Get<AppSettings>();
 builder.Services.AddSingleton<AppSettings>();
+builder.Services.AddSingleton<EmailService>(sp =>
+{
+    var emailConfig = builder.Configuration.GetSection("EmailConfig").Get<EmailConfig>();
+    return new EmailService(emailConfig);
+});
 
 builder.Services.AddCors(options =>
 {
