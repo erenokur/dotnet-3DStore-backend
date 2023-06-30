@@ -2,7 +2,7 @@ namespace dotnet_todo_backend.Controllers;
 
 
 using dotnet_3D_store_backend.Contexts;
-using dotnet_3D_store_backend.Models;
+using dotnet_3D_store_backend.DTOs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;

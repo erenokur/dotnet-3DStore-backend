@@ -9,7 +9,7 @@ using dotnet_3D_store_backend.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
-using dotnet_3D_store_backend.Enumerators;
+using dotnet_3D_store_backend.DTOs;
 
 [ApiController]
 [Route("[controller]")]

@@ -1,4 +1,4 @@
-namespace dotnet_3D_store_backend.Models;
+namespace dotnet_3D_store_backend.DTOs;
 
 using dotnet_3D_store_backend.interfaces;
 public class RegisterResponse : IRegisterResponse

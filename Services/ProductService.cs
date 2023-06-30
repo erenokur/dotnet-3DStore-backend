@@ -5,6 +5,7 @@ using dotnet_3D_store_backend.Models;
 using dotnet_3D_store_backend.Contexts;
 using dotnet_3D_store_backend.Entities;
 using dotnet_3D_store_backend.Enumerators;
+using dotnet_3D_store_backend.DTOs;
 using Microsoft.EntityFrameworkCore;
 
 public class ProductService
